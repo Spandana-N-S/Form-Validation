@@ -1,5 +1,7 @@
 Implement responsive Form Validation using HTML, CSS, and vanilla JavaScript
 
-Form validation involves ensuring that the data entered by users in a form meets specific criteria and is valid. Its primary purpose is to prevent the submission of incomplete or invalid data.
-* show or hide password visibility on the toggle button click.
+Form validation involves ensuring that the data entered by users in a form meets specific criteria and is valid. 
+Its primary purpose is to prevent the submission of incomplete or invalid data.
+
+
 
