@@ -1,0 +1,181 @@
+<!--index.html  This form includes full name, username, email, password, confirm password, date of birth, and gender fields -->
+
+<!DOCTYPE html>
+<!-- Website - www.codingnepalweb.com -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation in HTML | CodingNepal</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Fontawesome CDN Link For Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+  </head>
+  <body>
+    <!-- Solid Water Effect -->
+    <div class="water-container">
+      <div class="ocean-body"></div>
+      <div class="water-surface"></div>
+    </div>
+    
+    <form action="thank-you.html">
+      <h2>Form Validation</h2>
+      
+      <div class="form-group fullname">
+        <label for="fullname">Full Name</label>
+        <input type="text" id="fullname" placeholder="Enter your full name">
+      </div>
+      
+      <!-- Username Field with Character Limit -->
+      <div class="form-group username">
+        <label for="username">Username</label>
+        <div class="field">
+          <input type="text" id="username" placeholder="Enter username" spellcheck="false" maxlength="19" required>
+          <i class="fa-solid fa-at"></i>
+          <span class="counter">19</span>
+        </div>
+        <div class="error-text">Username can't be blank</div>
+      </div>
+      
+      <!-- Email Field with Validation Icons -->
+      <div class="form-group email">
+        <label for="email">Email Address</label>
+        <div class="field">
+          <input type="text" id="email" placeholder="Enter your email address" class="email" spellcheck="false" autocomplete="off">
+          <div class="icons">
+            <span class="icon1 fas fa-exclamation"></span>
+            <span class="icon2 fas fa-check"></span>
+          </div>
+        </div>
+        <div class="error-text">Please Enter Valid Email Address</div>
+      </div>
+      
+      <!-- Password Field with Strength Indicator and Show/Hide -->
+      <div class="form-group password">
+        <label for="password">Password</label>
+        <div class="field">
+          <input type="password" id="password" placeholder="Create password" class="password" spellcheck="false">
+          <span class="showBtn">SHOW</span>
+        </div>
+        <!-- Password Strength Indicator with bars -->
+        <div class="indicator">
+          <span class="weak"></span>
+          <span class="medium"></span>
+          <span class="strong"></span>
+        </div>
+        <div class="text">Your password is too weak</div>
+      </div>
+      
+      <!-- Confirm Password Field -->
+      <div class="form-group confirm-password">
+        <label for="cPassword">Confirm Password</label>
+        <div class="field">
+          <input type="password" id="cPassword" placeholder="Confirm password" class="cPassword" spellcheck="false">
+          <span class="showBtn">SHOW</span>
+        </div>
+        <div class="error-text">Password don't match</div>
+      </div>
+      
+      <!-- Password Requirements List -->
+      <div class="password-requirements">
+        <p>Password must contain:</p>
+        <ul class="requirement-list">
+          <li>
+            <i class="fa-solid fa-circle"></i>
+            <span>At least 8 characters length</span>
+          </li>
+          <li>
+            <i class="fa-solid fa-circle"></i>
+            <span>At least 1 number (0...9)</span>
+          </li>
+          <li>
+            <i class="fa-solid fa-circle"></i>
+            <span>At least 1 lowercase letter (a...z)</span>
+          </li>
+          <li>
+            <i class="fa-solid fa-circle"></i>
+            <span>At least 1 special symbol (!...$)</span>
+          </li>
+          <li>
+            <i class="fa-solid fa-circle"></i>
+            <span>At least 1 uppercase letter (A...Z)</span>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="form-group date">
+        <label for="date">Birth Date</label>
+        <input type="date" id="date" placeholder="Select your date">
+      </div>
+      
+      <div class="form-group gender">
+        <label for="gender">Gender</label>
+        <select id="gender">
+          <option value="" selected disabled>Select your gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      
+      <div class="form-group submit-btn">
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+    
+    <!-- Sound Controls -->
+    <div class="sound-controls">
+      <button class="sound-toggle muted" id="soundToggle" title="Toggle Music">
+        <i class="fas fa-music"></i>
+      </button>
+      <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="50" title="Adjust Volume">
+    </div>
+    
+    <!-- Soothing English Song -->
+    <audio id="bgMusic" loop>
+      <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112762.mp3" type="audio/mpeg">
+    </audio>
+    
+    <script src="script.js"></script>
+    <script>
+      // Sound toggle functionality for form page
+      // Sound resets to original state (muted) on page refresh
+      function setupSound() {
+        const soundToggle = document.getElementById('soundToggle');
+        const bgMusic = document.getElementById('bgMusic');
+        const volumeSlider = document.getElementById('volumeSlider');
+        
+        // Default state - sound is muted on page load/refresh
+        let isMuted = true;
+        bgMusic.volume = volumeSlider.value / 100;
+        
+        soundToggle.addEventListener('click', function() {
+          isMuted = !isMuted;
+          
+          if (isMuted) {
+            bgMusic.pause();
+            soundToggle.classList.add('muted');
+            soundToggle.innerHTML = '<i class="fas fa-music"></i>';
+          } else {
+            bgMusic.play().catch(e => console.log('Audio play failed:', e));
+            soundToggle.classList.remove('muted');
+            soundToggle.innerHTML = '<i class="fas fa-pause"></i>';
+          }
+        });
+        
+        // Volume slider functionality
+        volumeSlider.addEventListener('input', function() {
+          bgMusic.volume = this.value / 100;
+          if (this.value > 0 && isMuted) {
+            isMuted = false;
+            soundToggle.classList.remove('muted');
+            soundToggle.innerHTML = '<i class="fas fa-pause"></i>';
+          }
+        });
+      }
+      
+      // Run on page load - resets to original muted state
+      setupSound();
+    </script>
+  </body>
+</html>

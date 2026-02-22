@@ -1,0 +1,452 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: 
+    linear-gradient(180deg, rgba(0, 60, 130, 0.5) 0%, rgba(0, 80, 160, 0.6) 50%, rgba(0, 40, 100, 0.7) 100%),
+    url('https://images.unsplash.com/photo-1505118380757-91f5f5632de0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
+  overflow-x: hidden;
+}
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(0, 40, 90, 0.4) 0%, rgba(0, 60, 120, 0.5) 100%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Solid Water Container - No waves */
+.water-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Solid ocean water body */
+.ocean-body {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, 
+    rgba(0, 70, 150, 0.7) 0%,
+    rgba(0, 50, 120, 0.8) 50%,
+    rgba(0, 30, 80, 0.9) 100%
+  );
+}
+
+/* Subtle water surface line */
+.water-surface {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, 
+    transparent 0%,
+    rgba(135, 206, 235, 0.5) 30%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(135, 206, 235, 0.5) 70%,
+    transparent 100%
+  );
+}
+
+form {
+  padding: 25px;
+  background: rgba(255, 255, 255, 0.95);
+  max-width: 500px;
+  width: 100%;
+  border-radius: 7px;
+  box-shadow: 0 10px 40px rgba(0, 50, 100, 0.3);
+  position: relative;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(135, 206, 235, 0.3);
+}
+form h2 {
+  font-size: 27px;
+  text-align: center;
+  margin: 0px 0 30px;
+  color: #0a3050;
+  font-weight: 600;
+}
+form .form-group {
+  width: 100%;
+  margin-bottom: 20px;
+  position: relative;
+}
+form label {
+  display: block;
+  font-size: 15px;
+  margin-bottom: 7px;
+  color: #0a3050;
+  font-weight: 500;
+}
+
+/* Shake animation for error */
+form .field.shake {
+  animation: shake 0.3s ease-in-out;
+}
+@keyframes shake {
+  0%, 100% { margin-left: 0px; }
+  20%, 80% { margin-left: -12px; }
+  40%, 60% { margin-left: 12px; }
+}
+
+/* Field styles */
+form .field {
+  height: 50px;
+  width: 100%;
+  display: flex;
+  position: relative;
+}
+form input {
+  width: 100%;
+  height: 50px;
+  border: 1px solid #5dade2;
+  padding-left: 15px;
+  border-radius: 5px;
+  font-size: 18px;
+  outline: none;
+  transition: all 0.3s;
+  background: rgba(240, 248, 255, 0.95);
+}
+form input:focus {
+  border-color: #2874a6;
+  box-shadow: inset 0 0 5px rgba(40, 116, 166, 0.3), 0 0 15px rgba(135, 206, 235, 0.3);
+}
+form select {
+  width: 100%;
+  height: 50px;
+  border: 1px solid #5dade2;
+  padding-left: 15px;
+  border-radius: 5px;
+  font-size: 18px;
+  outline: none;
+  transition: all 0.3s;
+  background: rgba(240, 248, 255, 0.95);
+}
+form select:focus {
+  border-color: #2874a6;
+  box-shadow: 0 0 15px rgba(135, 206, 235, 0.3);
+}
+
+/* Field icons */
+.field .icons {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.field .icons span {
+  height: 25px;
+  width: 25px;
+  border: 2px solid;
+  border-radius: 50%;
+  line-height: 25px;
+  display: none;
+}
+.field .icons span.icon1 {
+  color: #e74c3c;
+  border-color: #e74c3c;
+}
+.field .icons span.icon2 {
+  color: #27ae60;
+  border-color: #27ae60;
+}
+
+/* Email field specific */
+form .email input {
+  padding-left: 15px;
+}
+
+/* Username field */
+form .username .field i {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #5dade2;
+  pointer-events: none;
+}
+form .username input {
+  padding-left: 45px;
+  padding-right: 50px;
+}
+form .username .counter {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: #5dade2;
+  pointer-events: none;
+}
+form .username input:valid ~ .counter {
+  color: #2874a6;
+}
+
+/* Password field */
+form .password .field .showBtn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  display: none;
+  user-select: none;
+  color: #2874a6;
+}
+form .password input:valid ~ .showBtn {
+  display: block;
+}
+
+/* Confirm password field */
+form .confirm-password .field .showBtn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  display: none;
+  user-select: none;
+  color: #2874a6;
+}
+form .confirm-password input:valid ~ .showBtn {
+  display: block;
+}
+
+/* Password Strength Indicator with bars */
+.indicator {
+  height: 10px;
+  margin: 10px 0;
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+}
+.indicator.active {
+  display: flex;
+}
+.indicator span {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background: #c8d6e5;
+  border-radius: 5px;
+}
+.indicator span:nth-child(2) {
+  margin: 0 3px;
+}
+.indicator span.active:before {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
+}
+.indicator span.weak:before {
+  background: linear-gradient(90deg, #e74c3c, #c0392b);
+}
+.indicator span.medium:before {
+  background: linear-gradient(90deg, #f39c12, #e67e22);
+}
+.indicator span.strong:before {
+  background: linear-gradient(90deg, #27ae60, #1e8449);
+}
+
+/* Password strength text */
+.text {
+  font-size: 16px;
+  font-weight: 500;
+  display: none;
+  margin-bottom: -10px;
+}
+.text.weak { color: #e74c3c; }
+.text.medium { color: #f39c12; }
+.text.strong { color: #27ae60; }
+
+/* Error text */
+.error-text {
+  position: relative;
+  margin: 15px 0 -5px 0;
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  color: #fff;
+  font-size: 14px;
+  padding: 8px 12px;
+  border-radius: 5px;
+  user-select: none;
+  display: none;
+  text-align: left;
+}
+.error-text:before {
+  position: absolute;
+  content: '';
+  height: 15px;
+  width: 15px;
+  background: #c0392b;
+  right: 20px;
+  top: -7px;
+  transform: rotate(45deg);
+}
+
+/* Password Requirements Styles */
+.password-requirements {
+  margin-bottom: 15px;
+  padding: 15px;
+  background: rgba(240, 248, 255, 0.9);
+  border-radius: 5px;
+  border: 1px solid #5dade2;
+}
+.password-requirements p {
+  font-size: 14px;
+  color: #0a3050;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+.requirement-list {
+  list-style: none;
+}
+.requirement-list li {
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  color: #2874a6;
+}
+.requirement-list li i {
+  width: 18px;
+  color: #aed6f1;
+  font-size: 0.5rem;
+  margin-right: 8px;
+  transition: all 0.3s;
+}
+.requirement-list li.valid i {
+  font-size: 12px;
+  color: #27ae60;
+}
+.requirement-list li.valid {
+  color: #0a3050;
+}
+
+/* Submit button */
+.submit-btn {
+  margin-top: 30px;
+}
+.submit-btn button {
+  width: 100%;
+  height: 50px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  background: linear-gradient(135deg, #1a5276 0%, #2874a6 50%, #3498db 100%);
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba(26, 82, 118, 0.4);
+  text-transform: uppercase;
+}
+.submit-btn button:hover {
+  background: linear-gradient(135deg, #2874a6 0%, #3498db 50%, #1a5276 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(26, 82, 118, 0.6);
+}
+
+/* Sound Controls Container */
+.sound-controls {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Sound Toggle Button */
+.sound-toggle {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  border: 2px solid rgba(135, 206, 235, 0.5);
+  background: linear-gradient(135deg, rgba(41, 116, 166, 0.9), rgba(26, 82, 118, 0.9));
+  color: #87ceeb;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 50, 100, 0.5);
+  transition: all 0.3s ease;
+}
+.sound-toggle:hover {
+  transform: scale(1.15);
+  box-shadow: 0 6px 30px rgba(0, 80, 150, 0.7);
+  background: linear-gradient(135deg, rgba(52, 152, 219, 0.9), rgba(41, 116, 166, 0.9));
+}
+.sound-toggle.muted {
+  background: linear-gradient(135deg, rgba(100, 120, 140, 0.9), rgba(70, 90, 110, 0.9));
+  color: #aab7b8;
+}
+
+/* Volume Slider */
+.volume-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100px;
+  height: 8px;
+  border-radius: 5px;
+  background: linear-gradient(90deg, rgba(41, 116, 166, 0.9), rgba(52, 152, 219, 0.9));
+  outline: none;
+  opacity: 0.9;
+  transition: opacity 0.2s;
+}
+.volume-slider:hover {
+  opacity: 1;
+}
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1a5276 0%, #3498db 100%);
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 50, 100, 0.5);
+}
+.volume-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1a5276 0%, #3498db 100%);
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 10px rgba(0, 50, 100, 0.5);
+}
